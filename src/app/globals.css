@@ -30,4 +30,22 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+/* HTML: <div class="triangle"></div> */
+.triangle {
+  width: 30px;
+  aspect-ratio: 1;
+  clip-path: polygon(0 100%,0 0,100% 100%);
+  background: white;
+}
+
+.triangle2 {
+  --b:1px; /* control the border thickness */
+
+  width: 30px;
+  aspect-ratio: 1;
+  clip-path: polygon(0 0,100% 0,0 100%,0 0,var(--b) var(--b),var(--b) calc(100% - var(--b)/tan(22.5deg)),calc(100% - var(--b)/tan(22.5deg)) var(--b),var(--b) var(--b));
+  background: white;
+
+}
 }
