@@ -75,7 +75,7 @@ export default function Home() {
       const h = ref.current.offsetHeight;
       setDimensions({ w, h });
     }
-  }, [ref.current]);
+  }, []);
 
   const childVariants = {
     hidden: { opacity: 0, x: -100 },
@@ -158,7 +158,7 @@ export default function Home() {
               <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
                 <div className=" flex gap-8 justify-between relative">
                   <div className="flex flex-col gap-4 w-[45%]">
-                    <label for="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
                       className="bg-black border-gray-500 border-[1px]"
                       type="text"
@@ -166,7 +166,7 @@ export default function Home() {
                     ></input>
                   </div>
                   <div className="flex flex-col gap-4 w-[45%]">
-                    <label for="email">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                       className="bg-black border-gray-500 border-[1px]"
                       type="text"
@@ -176,7 +176,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="flex flex-col gap-4">
-                    <label for="text">Message</label>
+                    <label htmlFor="text">Message</label>
                     <textarea
                       className="bg-black border-gray-500 border-[1px] h-[200px]"
                       name="text"
@@ -217,7 +217,7 @@ const Work = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-fit m-auto">
       {WorksList.map((work) => (
-        <Link target="_blank" href={work.url}>
+        <Link key={work.image} target="_blank" href={work.url}>
           <Image
             src={work.image}
             width={1000}
@@ -339,19 +339,18 @@ const Lines2 = () => {
 
   return (
     <>
-
-        <motion.span
-          ref={addLineRef}
-          key={"1"}
-          transition={{ delay: 0 }}
-          className="bg-white block w-full h-px -rotate-[30deg]"
-        ></motion.span>
-        <motion.span
-          ref={addLineRef}
-          key={"2"}
-          transition={{ delay: 0.2 }}
-          className="bg-white block w-full h-px -rotate-[30deg] scale-x-150"
-        ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"1"}
+        transition={{ delay: 0 }}
+        className="bg-white block w-full h-px -rotate-[30deg]"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"2"}
+        transition={{ delay: 0.2 }}
+        className="bg-white block w-full h-px -rotate-[30deg] scale-x-150"
+      ></motion.span>
 
       <motion.span
         ref={addLineRef}
@@ -531,7 +530,7 @@ function PresentationText(
         ref={addLineRef}
         className="w-[50%] md:w-[50%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
       >
-        <h1 className="text-2xl xl:text-5xl">Hi I'm,</h1>
+        <h1 className="text-2xl xl:text-5xl">{`Hi I'm,`}</h1>
       </motion.div>
       <motion.div
         variants={childVariants}
