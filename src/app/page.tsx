@@ -1,5 +1,13 @@
 "use client";
-import { motion } from "framer-motion";
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
@@ -7,6 +15,14 @@ import Link from "next/link";
 import Title from "./_components/Title";
 import Section from "./_components/Section";
 import { url } from "inspector";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import About from "./_components/About";
+
+import ToolsSection from "./_components/ToolsSection";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,6 +30,26 @@ export default function Home() {
   const [dimensions, setDimensions] = useState<{ w: number; h: number } | null>(
     null
   );
+  const [pos, setPos] = useState("block");
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 40%", "end start"],
+  });
+
+  const displaceX = useTransform(scrollYProgress, [0, 1], ["0px", "-500px"]);
+  const negdisplaceX = useTransform(scrollYProgress, [0, 1], ["-50%", "500px"]);
+  const displaceY = useTransform(
+    scrollYProgress,
+    [0, 0.95, 1],
+    ["0", "0px", "-10000px"]
+  );
+  const imgDisplaceY = useTransform(
+    scrollYProgress,
+    [0, 0.95, 1],
+    ["-50%", "-50%", "-10000px"]
+  );
+  const opacity = useTransform(scrollYProgress, [0, 1], ["100%", "0%"]);
 
   let dots = [];
 
@@ -48,7 +84,7 @@ export default function Home() {
 
   return (
     <>
-      <div className=" h-screen">
+      <motion.div style={{}} className=" overflow-hidden h-[150vh]">
         <div className="flex justify-between p-6 items-center relative">
           <nav className="hidden sm:flex">
             <ul className="flex gap-4">
@@ -60,38 +96,15 @@ export default function Home() {
           </nav>
           <Hamburgermenu></Hamburgermenu>
         </div>
+        {PresentationText(displaceX, opacity, displaceY, childVariants)}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: 0.1, duration: 2 }}
-          className="absolute w-full bottom-[30%] md:w-1/2 md:bottom-[20%] lg:top-[30%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
-        >
-          <motion.div
-            variants={childVariants}
-            className="w-[50%] md:w-[50%] border-2 bg-black border-white h-16 lg:h-24 flex justify-center items-center"
-          >
-            <h1 className="text-2xl lg:text-5xl">Hi I'm,</h1>
-          </motion.div>
-          <motion.div
-            variants={childVariants}
-            className="w-[90%] md:w-[100%] lg:w-[75%] ml-6 border-2 bg-black border-white h-16 lg:h-24 flex justify-center items-center"
-          >
-            <h1 className="text-2xl lg:text-5xl">Thibaut Hellinckx</h1>
-          </motion.div>
-          <motion.div
-            variants={childVariants}
-            className="w-[90%] md:w-[100%] lg:w-[75%] border-2 bg-black border-white h-16 lg:h-24 flex justify-center items-center"
-          >
-            <h1 className="text-2xl lg:text-5xl">A web developer</h1>
-          </motion.div>
-        </motion.div>
-        <div
           ref={ref}
-          className="absolute z-40 left-[47%] top-[42%] lg:top-[45%] -translate-x-1/2 -translate-y-1/2 w-[90%] md:left-[65%] md:top-[55%] md:-translate-x-1/2 md:-translate-y-1/2 md:w-[50%] " // PC
+          style={{ translateX: "-50%", translateY: imgDisplaceY }}
+          className="fixed z-40 left-[47%] top-[42%] lg:top-[45%] -translate-x-1/2 -translate-y-1/2 w-[90%] md:left-[65%] md:top-[55%] md:-translate-x-1/2 md:-translate-y-1/2 md:w-[50%] 2xl:w-[40%] overflow-hidden" // PC
         >
           {
             <Image
-            alt="mainimage"
+              alt="mainimage"
               style={{ opacity: 0 }}
               src={"/bgpic.png"}
               width={800}
@@ -103,26 +116,88 @@ export default function Home() {
             animate="visible"
             transition={{ staggerChildren: 0.1 }}
           >
-            {MainImages(h!, w!)}
+            {MainImages(h!, w!, scrollYProgress)}
           </motion.div>
-        </div>
-        <div className="grid w-[100%] overflow-hidden p-6 md:w-[600px] -translate-y-2/3 md:-translate-y-1/2 md:-translate-x-1/2 md:left-1/2 grid-cols-12 gap-12 absolute">
+        </motion.div>
+        <motion.div
+          style={{ opacity }}
+          className="grid w-[100%] overflow-hidden p-6 md:w-[600px] -translate-y-2/3 md:-translate-y-1/2 md:-translate-x-1/2 md:left-1/2 grid-cols-12 gap-12 fixed"
+        >
           {dots}
-        </div>
-        <div className="hidden md:grid -translate-y-1/2 -translate-x-1/2 top-1/2 right-0 grid-cols-3 gap-12 absolute">
+        </motion.div>
+        <motion.div
+          style={{ opacity }}
+          className="hidden md:grid -translate-y-1/2 -translate-x-1/2 top-1/2 right-0 grid-cols-3 gap-12 fixed"
+        >
           {dots}
-        </div>
-        <Lines></Lines>
-      </div>
-
+        </motion.div>
+        <motion.div className="flex flex-col gap-12 absolute -left-8 w-fit top-1/3 md:top-1/2 ">
+          {Lines()}
+        </motion.div>
+      </motion.div>
 
       <Section>
-          <Title title="Work"></Title>
+        <Title title="Work"></Title>
         <Work></Work>
       </Section>
+      <div className="mb-32">
+        <Section>
+          <Title title="about"></Title>
+          <About></About>
+        </Section>
+      </div>
       <Section>
-        <Title title="about"></Title>
+        <ToolsSection></ToolsSection>
       </Section>
+      <Section>
+        <Title title="Contact"></Title>
+        <div className="relative flex justify-center">
+          <div className="bg-[#1F1F1F] border-[1px] z-0 w-[40%] h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
+          <div className="w-[40%] h-[70vh] border-[1px] relative z-50 bg-black">
+            <form className="h-full" action="">
+              <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
+                <div className=" flex gap-8 justify-between relative">
+                  <div className="flex flex-col gap-4 w-[45%]">
+                    <label for="name">Name</label>
+                    <input
+                      className="bg-black border-gray-500 border-[1px]"
+                      type="text"
+                      name="name"
+                    ></input>
+                  </div>
+                  <div className="flex flex-col gap-4 w-[45%]">
+                    <label for="email">Email</label>
+                    <input
+                      className="bg-black border-gray-500 border-[1px]"
+                      type="text"
+                      name="email"
+                    ></input>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-4">
+                    <label for="text">Message</label>
+                    <textarea
+                      className="bg-black border-gray-500 border-[1px] h-[200px]"
+                      name="text"
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="relative mx-auto w-1/3">
+                  <button className="bg-white text-black w-full z-50 relative h-[50px]">
+                    Submit
+                  </button>
+                  <div className="bg-black border-[1px] z-0 text-black w-full h-[50px] absolute top-4 left-4" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <motion.div className="flex flex-col gap-24 absolute left-[50%] -translate-x-[50%] -translate-y-[50%] w-[50%] top-1/3 md:top-1/2 ">
+          {Lines2()}
+        </motion.div>
+      </Section>
+      <div className="h-screen"></div>
     </>
   );
 }
@@ -140,7 +215,7 @@ const WorksList = [
 
 const Work = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-fit m-auto">
       {WorksList.map((work) => (
         <Link target="_blank" href={work.url}>
           <Image
@@ -155,10 +230,18 @@ const Work = () => {
   );
 };
 
-const MainImages = (h: number, w: number) => {
+const MainImages = (h: number, w: number, scroll: MotionValue<number>) => {
   const matches = useMediaQuery("(min-width:1025px)");
+  const div1 = useRef(null);
+  const div2 = useRef(null);
+  const div3 = useRef(null);
+  const div4 = useRef(null);
 
-  const Testoffdset = 6;
+  const displaceX = useTransform(scroll, [0, 1], ["50px", "-500px"]);
+  const displaceX2 = useTransform(scroll, [0, 1], ["0px", "550px"]);
+  const opacity = useTransform(scroll, [0, 1], ["100%", "0%"]);
+
+  const Testoffdset = 50;
   const childVariants = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0 },
@@ -171,181 +254,218 @@ const MainImages = (h: number, w: number) => {
   const animDuration = 1;
   const animDelay = 0.5;
 
+  useMotionValueEvent(displaceX, "change", (latest) => {
+    console.log("x changed to", latest);
+  });
+
+  const generateStyle = (index: number, isWide: boolean) => ({
+    opacity: opacity,
+    height: `${h / 4 - 2}px`,
+    top: `${(h * index) / 4}px`,
+    left: index % 2 === 0 ? displaceX : displaceX2,
+    backgroundSize: `${w * 1.5}px`,
+    backgroundPosition: `${
+      isWide
+        ? `calc(60% - ${index % 2 == 0 ? Testoffdset * 1 : 0}px)`
+        : `calc(50% - ${index % 2 == 0 ? Testoffdset * 1 : 0}px)`
+    } -${(index * h) / 4 + (isWide ? 250 : 100)}px`,
+    backgroundRepeat: "no-repeat",
+  });
+
   return (
     <>
-      {matches ? (
-        <>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 0) / 4}px`,
-              left: Testoffdset + "%",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `calc(60% + ${Testoffdset * 2}%) -${
-                (0 * h!) / 4 + 250
-              }px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className={`absolute w-full left-0 bg-mainimg z-10`}
-          ></motion.div>
-          <motion.div
-            variants={childVariants2}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 1) / 4}px`,
-              left: "",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `60% -${(1 * h!) / 4 + 250}px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 2) / 4}px`,
-              left: Testoffdset + "%",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `calc(60% + ${Testoffdset * 2}%) -${
-                (2 * h!) / 4 + 250
-              }px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-          <motion.div
-            variants={childVariants2}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 3) / 4}px`,
-              left: "",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `60% -${(3 * h!) / 4 + 250}px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-        </>
-      ) : (
-        <>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 0) / 4}px`,
-              left: Testoffdset + "%",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `calc(50% + ${Testoffdset * 2}%) -${
-                (0 * h!) / 4 + 100
-              }px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className={`absolute w-[100%] left-[15%] bg-mainimg z-10`}
-          ></motion.div>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 1) / 4}px`,
-
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `50% -${(1 * h!) / 4 + 100}px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 2}px`,
-              top: `${(h! * 2) / 4}px`,
-              left: Testoffdset + "%",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `calc(50% + ${Testoffdset * 2}%) -${
-                (2 * h!) / 4 + 100
-              }px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-          <motion.div
-            variants={childVariants}
-            transition={{ duration: animDuration, delay: animDelay }}
-            style={{
-              height: `${h! / 4 - 5}px`,
-              top: `${(h! * 3) / 4}px`,
-              left: "",
-              backgroundSize: w! * 1.5 + "px",
-              backgroundPosition: `50% -${(3 * h!) / 4 + 100}px`,
-              backgroundRepeat: "no-repeat",
-            }}
-            className="absolute w-full left-0 bg-mainimg z-10 "
-          ></motion.div>
-        </>
-      )}
+      <motion.div
+        ref={div1}
+        id="pic1"
+        variants={childVariants}
+        transition={{ duration: animDuration, delay: animDelay }}
+        style={generateStyle(0, matches)}
+        className="absolute w-[90%] left-0 bg-mainimg z-10"
+      />
+      <motion.div
+        ref={div2}
+        variants={childVariants2}
+        transition={{ duration: animDuration, delay: animDelay }}
+        style={generateStyle(1, matches)}
+        className="absolute w-[90%] left-0 bg-mainimg z-10"
+      />
+      <motion.div
+        ref={div3}
+        variants={childVariants}
+        transition={{ duration: animDuration, delay: animDelay }}
+        style={generateStyle(2, matches)}
+        className="absolute w-[90%] left-0 bg-mainimg z-10"
+      />
+      <motion.div
+        ref={div4}
+        variants={childVariants2}
+        transition={{ duration: animDuration, delay: animDelay }}
+        style={generateStyle(3, matches)}
+        className="absolute w-[90%] left-0 bg-mainimg z-10"
+      />
     </>
   );
 };
 
-const Lines = () => {
+const Lines2 = () => {
   const matches = useMediaQuery("(min-width:768px)");
+  const lineRefs = useRef<HTMLElement[]>([]);
+  lineRefs.current = [];
 
-  const w = matches ? 24 : 16;
+  useGSAP(() => {
+    lineRefs.current.forEach((line, index) => {
+      gsap.from(line, {
+        opacity: 0,
+        rotation: 0,
+        scale: `0`,
+        duration: 1,
+        delay: index * 0.02,
+        scrollTrigger: {
+          markers: true,
+          trigger: line,
+          start: "20% 100%", // Adjust this as needed
+          end: "60% 80%",
+          scrub: 3,
+        },
+      });
+    });
+  }, [matches]);
+
+  const addLineRef = (el: HTMLElement) => {
+    if (el && !lineRefs.current.includes(el)) {
+      lineRefs.current.push(el);
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-12 absolute -left-8 w-fit top-1/3 md:top-1/2 ">
+    <>
+
+        <motion.span
+          ref={addLineRef}
+          key={"1"}
+          transition={{ delay: 0 }}
+          className="bg-white block w-full h-px -rotate-[30deg]"
+        ></motion.span>
+        <motion.span
+          ref={addLineRef}
+          key={"2"}
+          transition={{ delay: 0.2 }}
+          className="bg-white block w-full h-px -rotate-[30deg] scale-x-150"
+        ></motion.span>
+
       <motion.span
+        ref={addLineRef}
+        key={"3"}
+        transition={{ delay: 0.4 }}
+        className="bg-white block w-full h-px -rotate-[30deg] scale-x-250"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"4"}
+        transition={{ delay: 0.6 }}
+        className="bg-white block w-full h-px -rotate-[30deg] scale-x-50"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"5"}
+        transition={{ delay: 0.8 }}
+        className="bg-white block w-full h-px -rotate-[30deg] scale-x-150"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"6"}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="bg-white block w-full h-px -rotate-[30deg]"
+      ></motion.span>
+    </>
+  );
+};
+const Lines = () => {
+  const matches = useMediaQuery("(min-width:768px)");
+  const lineRefs = useRef<HTMLElement[]>([]);
+  lineRefs.current = [];
+  const w = matches ? 24 : 16;
+
+  useGSAP(() => {
+    lineRefs.current.forEach((line, index) => {
+      gsap.fromTo(
+        line,
+        { width: `${w}rem`, rotation: -30, opacity: 1 },
+        {
+          opacity: 0,
+          width: `0rem`,
+          rotation: 0,
+          duration: 1,
+          delay: index * 0.02,
+          scrollTrigger: {
+            markers: true,
+            trigger: line,
+            start: "0% 40%", // Adjust this as needed
+            end: "100% 40%",
+            scrub: 3,
+          },
+        }
+      );
+    });
+  }, [matches]);
+
+  const addLineRef = (el: HTMLElement) => {
+    if (el && !lineRefs.current.includes(el)) {
+      lineRefs.current.push(el);
+    }
+  };
+
+  return (
+    <>
+      <motion.span
+        ref={addLineRef}
         key={"1"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-px -rotate-[30deg]"
       ></motion.span>
       <motion.span
+        ref={addLineRef}
         key={"2"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.2 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-px -rotate-[30deg]"
       ></motion.span>
       <motion.span
+        ref={addLineRef}
         key={"3"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.4 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-px -rotate-[30deg]"
       ></motion.span>
       <motion.span
+        ref={addLineRef}
         key={"4"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.6 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-px -rotate-[30deg]"
       ></motion.span>
       <motion.span
+        ref={addLineRef}
         key={"5"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.8 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-px -rotate-[30deg]"
       ></motion.span>
       <motion.span
+        ref={addLineRef}
         key={"6"}
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 1, duration: 0.5 }}
         className="bg-white block w-96 h-px -rotate-[30deg]"
       ></motion.span>
-    </div>
+    </>
   );
 };
 
@@ -359,3 +479,74 @@ const Hamburgermenu = () => {
     </div>
   );
 };
+
+function PresentationText(
+  displaceX: MotionValue<string>,
+  opacity: MotionValue<string>,
+  displaceY: MotionValue<string>,
+  childVariants: {
+    hidden: { opacity: number; x: number };
+    visible: { opacity: number; x: number };
+  }
+) {
+  const lineRefs = useRef<HTMLElement[]>([]);
+
+  useGSAP(() => {
+    lineRefs.current.forEach((line, index) => {
+      gsap.fromTo(
+        line,
+        { opacity: 1, x: 0 },
+        {
+          x: -300,
+          opacity: 0,
+          duration: 1,
+          delay: index * 0.2,
+          scrollTrigger: {
+            trigger: line,
+            start: "0% 30%", // Adjust this as needed
+            end: "100% 20%",
+            scrub: 2,
+          },
+        }
+      );
+    });
+  }, []);
+
+  const addLineRef = (el: HTMLElement | null) => {
+    if (el && !lineRefs.current.includes(el)) {
+      lineRefs.current.push(el);
+    }
+  };
+
+  return (
+    <motion.div
+      style={{ opacity, translateY: displaceY }}
+      initial="hidden"
+      animate="visible"
+      transition={{ staggerChildren: 0.1, duration: 2 }}
+      className="fixed w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:top-[30%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
+    >
+      <motion.div
+        variants={childVariants}
+        ref={addLineRef}
+        className="w-[50%] md:w-[50%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+      >
+        <h1 className="text-2xl xl:text-5xl">Hi I'm,</h1>
+      </motion.div>
+      <motion.div
+        variants={childVariants}
+        ref={addLineRef}
+        className="w-[90%] md:w-[100%] lg:w-[75%] ml-6 border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+      >
+        <h1 className="text-2xl xl:text-5xl">Thibaut Hellinckx</h1>
+      </motion.div>
+      <motion.div
+        variants={childVariants}
+        ref={addLineRef}
+        className="w-[90%] md:w-[100%] lg:w-[75%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+      >
+        <h1 className="text-2xl xl:text-5xl">A web developer</h1>
+      </motion.div>
+    </motion.div>
+  );
+}
