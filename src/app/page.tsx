@@ -19,6 +19,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import About from "./_components/About";
+import linkedinSvg from "/public/logo/iconmonstr-linkedin-3.svg";
 
 import ToolsSection from "./_components/ToolsSection";
 
@@ -197,7 +198,28 @@ export default function Home() {
           {Lines2()}
         </motion.div>
       </Section>
-      <div className="h-screen"></div>
+      <motion.div className="flex flex-col gap-4 mt-48">
+          {Lines3()}
+        </motion.div>
+      <Section>
+        <div className="flex flex-col gap-12">
+          <div className="text-center text-7xl">
+            <h1>Thibaut Hellinckx</h1>
+          </div>
+          <div>
+            <ul className="flex justify-center">
+              <li className="block w-fit">
+                <a href="" className="w-fit block">
+                  <Image src={linkedinSvg} width={50} height={50} alt="linkedin"></Image>
+                </a>
+              </li>
+            </ul>
+          </div>
+        <div className="text-center">
+          <p>All rights reserved © Thibaut Hellinckx</p>
+        </div>
+        </div>
+      </Section>
     </>
   );
 }
@@ -303,6 +325,78 @@ const MainImages = (h: number, w: number, scroll: MotionValue<number>) => {
         style={generateStyle(3, matches)}
         className="absolute w-[90%] left-0 bg-mainimg z-10"
       />
+    </>
+  );
+};
+
+const Lines3 = () => {
+  const matches = useMediaQuery("(min-width:768px)");
+  const lineRefs = useRef<HTMLElement[]>([]);
+  lineRefs.current = [];
+
+  useGSAP(() => {
+    lineRefs.current.forEach((line, index) => {
+      gsap.from(line, {
+        opacity: 0,
+        scale: `0`,
+        duration: 1,
+        delay: index * 0.02,
+        scrollTrigger: {
+          markers: true,
+          trigger: line,
+          start: "0% 70%", // Adjust this as needed
+          end: "100% 50%",
+          scrub: 3,
+        },
+      });
+    });
+  }, [matches]);
+
+  const addLineRef = (el: HTMLElement) => {
+    if (el && !lineRefs.current.includes(el)) {
+      lineRefs.current.push(el);
+    }
+  };
+
+  return (
+    <>
+      <motion.span
+        ref={addLineRef}
+        key={"1"}
+        transition={{ delay: 0 }}
+        className="bg-white block origin-left w-full h-px"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"2"}
+        transition={{ delay: 0.2 }}
+        className="bg-white block origin-left w-full h-px scale-x-95 "
+      ></motion.span>
+
+      <motion.span
+        ref={addLineRef}
+        key={"3"}
+        transition={{ delay: 0.4 }}
+        className="bg-white block origin-left w-full h-px scale-x-90"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"4"}
+        transition={{ delay: 0.6 }}
+        className="bg-white block origin-left w-full h-px scale-x-75"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"5"}
+        transition={{ delay: 0.8 }}
+        className="bg-white block origin-left w-full h-px scale-x-50"
+      ></motion.span>
+      <motion.span
+        ref={addLineRef}
+        key={"6"}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="bg-white block origin-left w-full h-px scale-x-[.4]"
+      ></motion.span>
     </>
   );
 };
