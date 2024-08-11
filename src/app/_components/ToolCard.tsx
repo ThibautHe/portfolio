@@ -48,7 +48,7 @@ export default function ToolCard({ icon }: toolcardProps) {
       className="m-auto bg-black border-[1px]  w-36 h-36 flex justify-center items-center"
     >
       <div style={{ transform: "translateZ(75px)" }}>
-        <Image src={icon} width={100} height={100}></Image>
+        <Image alt="icon" src={icon} width={100} height={100}></Image>
       </div>
     </motion.div>
   );
