@@ -45,7 +45,7 @@ export default function ToolsSection() {
   console.log(element);
 
   return (
-    <div className="h-[50vh] content-center relative">
+    <div className="h-[75vh] md:h-[50vh] content-center relative">
       <motion.h1 className="absolute text-black text-[25vw] text-stroke z-0 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
         TOOLS
       </motion.h1>
