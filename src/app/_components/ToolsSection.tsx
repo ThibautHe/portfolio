@@ -34,7 +34,6 @@ export default function ToolsSection() {
         duration: 1,
         scrollTrigger: {
           trigger: element,
-          markers: true,
           start: "-20% 80%", // Adjust this as needed
           end: "100% 0%",
           scrub: 3,
