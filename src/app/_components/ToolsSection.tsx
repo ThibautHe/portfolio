@@ -9,47 +9,57 @@ import "splitting/dist/splitting.css";
 import "splitting/dist/splitting-cells.css";
 import Splitting from "splitting";
 
-import { useEffect, useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useCallback, useLayoutEffect, useState } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ToolsSection() {
-  const ref = useRef(null);
-  const titleref = useRef(null);
-  const isInView = useInView(ref);
-  const { scrollYProgress } = useScroll({ target: ref });
+  const [element, setElement] = useState<HTMLElement | null>(null);
 
-  const textdisplacement = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-200px", "200px"]
-  );
+  // Callback ref function to set the element
+  const Ref = useCallback((node: HTMLDivElement | null) => {
+    if (node !== null) {
+      setElement(node);
+    }
+  }, []);
+
+  // Use useLayoutEffect to ensure the effect runs after the DOM is updated
+  useLayoutEffect(() => {
+    if (element !== null) {
+      gsap.fromTo(element,{y:300}, {
+        y: -400,
+        duration: 1,
+        scrollTrigger: {
+          trigger: element,
+          markers: true,
+          start: "-20% 80%", // Adjust this as needed
+          end: "100% 0%",
+          scrub: 3,
+        },
+      });
+    }
+  }, [element]); // Depend on `element` to run effect when `element` changes
+
+  console.log(element);
 
   return (
-    <>
-      <div className="h-[50vh] content-center relative">
-        <motion.h1
-          ref={titleref}
-          className="absolute text-black text-[25vw] text-stroke z-0 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
-        >
-          TOOLS
-        </motion.h1>
-        <motion.div
-          ref={ref}
-          style={{ translateY: textdisplacement }}
-          className="z-50  "
-        >
-          <div className="grid toolsgrid-phone md:toolsgrid justify-center items-center gap-8 md:gap-36">
-            <ToolCard icon={reactIcon}></ToolCard>
-            <ToolCard icon={nextIcon} />
-            <ToolCard icon={tailwindIcon} />
-            <ToolCard icon={githubIcon} />
-            <ToolCard icon={csharpIcon} />
-            <ToolCard icon={unityIcon} />
-          </div>
-        </motion.div>
-      </div>
-    </>
+    <div className="h-[50vh] content-center relative">
+      <motion.h1 className="absolute text-black text-[25vw] text-stroke z-0 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+        TOOLS
+      </motion.h1>
+      <motion.div ref={Ref} className="z-50">
+        <div className="grid toolsgrid-phone md:toolsgrid justify-center items-center gap-8 md:gap-36">
+          <ToolCard icon={reactIcon} />
+          <ToolCard icon={nextIcon} />
+          <ToolCard icon={tailwindIcon} />
+          <ToolCard icon={githubIcon} />
+          <ToolCard icon={csharpIcon} />
+          <ToolCard icon={unityIcon} />
+        </div>
+      </motion.div>
+    </div>
   );
 }

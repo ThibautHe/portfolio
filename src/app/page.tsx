@@ -229,11 +229,11 @@ export default function Home() {
 
 const WorksList = [
   {
-    image: "/image1.png",
+    image: "/Image1.png",
     url: "https://www.aerodeco.be",
   },
   {
-    image: "/image3.png",
+    image: "/Image3.png",
     url: "https://berkay-portfolio.netlify.app/Home",
   },
   {
@@ -282,10 +282,6 @@ const MainImages = (h: number, w: number, scroll: MotionValue<number>) => {
 
   const animDuration = 1;
   const animDelay = 0.5;
-
-  useMotionValueEvent(displaceX, "change", (latest) => {
-    console.log("x changed to", latest);
-  });
 
   const generateStyle = (index: number, isWide: boolean) => ({
     opacity: opacity,
@@ -339,7 +335,9 @@ const MainImages = (h: number, w: number, scroll: MotionValue<number>) => {
 const Lines3 = () => {
   const matches = useMediaQuery("(min-width:768px)");
   const lineRefs = useRef<HTMLElement[]>([]);
-  lineRefs.current = [];
+
+  console.log(lineRefs.current);
+  
 
   useGSAP(() => {
     lineRefs.current.forEach((line, index) => {
@@ -410,7 +408,6 @@ const Lines3 = () => {
 const Lines2 = () => {
   const matches = useMediaQuery("(min-width:768px)");
   const lineRefs = useRef<HTMLElement[]>([]);
-  lineRefs.current = [];
 
   useGSAP(() => {
     lineRefs.current.forEach((line, index) => {
@@ -481,7 +478,6 @@ const Lines2 = () => {
 const Lines = () => {
   const matches = useMediaQuery("(min-width:768px)");
   const lineRefs = useRef<HTMLElement[]>([]);
-  lineRefs.current = [];
   const w = matches ? 24 : 16;
 
   useGSAP(() => {

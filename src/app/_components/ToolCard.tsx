@@ -45,10 +45,10 @@ export default function ToolCard({ icon }: toolcardProps) {
       }}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="m-auto bg-black border-[1px]  w-36 h-36 flex justify-center items-center"
+      className="m-auto bg-black border-[1px] w-24 h-24  md:w-36 md:h-36 flex justify-center items-center"
     >
       <div style={{ transform: "translateZ(75px)" }}>
-        <Image alt="icon" src={icon} width={100} height={100}></Image>
+        <Image alt="icon" src={icon} width={75} height={75}></Image>
       </div>
     </motion.div>
   );
