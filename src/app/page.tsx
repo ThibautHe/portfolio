@@ -132,7 +132,7 @@ export default function Home() {
         >
           {dots}
         </motion.div>
-        <motion.div className="flex flex-col gap-12 absolute -left-8 w-fit top-1/3 md:top-1/2 ">
+        <motion.div className="flex flex-col gap-12 absolute -left-8 w-fit bottom-[20%] md:top-1/2 ">
           {Lines()}
         </motion.div>
       </motion.div>
@@ -153,8 +153,8 @@ export default function Home() {
       <Section>
         <Title title="Contact"></Title>
         <div className="relative flex justify-center">
-          <div className="bg-[#1F1F1F] border-[1px] z-0 w-[40%] h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
-          <div className="w-[40%] h-[70vh] border-[1px] relative z-50 bg-black">
+          <div className="bg-[#1F1F1F] border-[1px] z-0 w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
+          <div className="w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] border-[1px] relative z-50 bg-black">
             <form className="h-full" action="">
               <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
                 <div className=" flex gap-8 justify-between relative">
@@ -194,14 +194,12 @@ export default function Home() {
             </form>
           </div>
         </div>
-        <motion.div className="flex flex-col gap-24 absolute left-[50%] -translate-x-[50%] -translate-y-[50%] w-[50%] top-1/3 md:top-1/2 ">
+        <motion.div className="flex flex-col gap-6 md:gap-24 w-[60%] absolute left-[50%] -translate-x-[50%] -translate-y-[50%] md:w-[50%] top-1/3 md:top-1/2 ">
           {Lines2()}
         </motion.div>
       </Section>
-      <motion.div className="flex flex-col gap-4 mt-48">
-          {Lines3()}
-        </motion.div>
-      <Section>
+      <motion.div className="flex flex-col gap-4 my-24 md:mt-48">{Lines3()}</motion.div>
+      <div className="relative md:p-12">
         <div className="flex flex-col gap-12">
           <div className="text-center text-7xl">
             <h1>Thibaut Hellinckx</h1>
@@ -210,16 +208,21 @@ export default function Home() {
             <ul className="flex justify-center">
               <li className="block w-fit">
                 <a href="" className="w-fit block">
-                  <Image src={linkedinSvg} width={50} height={50} alt="linkedin"></Image>
+                  <Image
+                    src={linkedinSvg}
+                    width={50}
+                    height={50}
+                    alt="linkedin"
+                  ></Image>
                 </a>
               </li>
             </ul>
           </div>
-        <div className="text-center">
-          <p>All rights reserved © Thibaut Hellinckx</p>
+          <div className="text-center">
+            <p>All rights reserved © Thibaut Hellinckx</p>
+          </div>
         </div>
-        </div>
-      </Section>
+      </div>
     </>
   );
 }
@@ -232,6 +235,10 @@ const WorksList = [
   {
     image: "/image3.png",
     url: "https://berkay-portfolio.netlify.app/Home",
+  },
+  {
+    image: "/gilleshoriac.png",
+    url: "https://www.gilleshoriac.com",
   },
 ];
 
@@ -342,10 +349,9 @@ const Lines3 = () => {
         duration: 1,
         delay: index * 0.02,
         scrollTrigger: {
-          markers: true,
           trigger: line,
-          start: "0% 70%", // Adjust this as needed
-          end: "100% 50%",
+          start: "0% 90%", // Adjust this as needed
+          end: "100% 70%",
           scrub: 3,
         },
       });
@@ -415,7 +421,6 @@ const Lines2 = () => {
         duration: 1,
         delay: index * 0.02,
         scrollTrigger: {
-          markers: true,
           trigger: line,
           start: "20% 100%", // Adjust this as needed
           end: "60% 80%",
@@ -491,7 +496,6 @@ const Lines = () => {
           duration: 1,
           delay: index * 0.02,
           scrollTrigger: {
-            markers: true,
             trigger: line,
             start: "0% 40%", // Adjust this as needed
             end: "100% 40%",

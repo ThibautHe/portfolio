@@ -40,7 +40,7 @@ export default function ToolsSection() {
           style={{ translateY: textdisplacement }}
           className="z-50  "
         >
-          <div className="grid toolsgrid justify-center items-center gap-36">
+          <div className="grid toolsgrid-phone md:toolsgrid justify-center items-center gap-8 md:gap-36">
             <ToolCard icon={reactIcon}></ToolCard>
             <ToolCard icon={nextIcon} />
             <ToolCard icon={tailwindIcon} />

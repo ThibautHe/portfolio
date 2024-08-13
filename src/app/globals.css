@@ -52,6 +52,9 @@ body {
 .toolsgrid{
   grid-template-columns: repeat(3, minmax(0, auto));
 }
+.toolsgrid-phone{
+  grid-template-columns: repeat(2, minmax(0, auto));
+}
 
 .text-stroke{
   -webkit-text-stroke: 2px white;
