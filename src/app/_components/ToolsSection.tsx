@@ -29,8 +29,8 @@ export default function ToolsSection() {
   // Use useLayoutEffect to ensure the effect runs after the DOM is updated
   useLayoutEffect(() => {
     if (element !== null) {
-      gsap.fromTo(element,{y:300}, {
-        y: -400,
+      gsap.fromTo(element,{y:200}, {
+        y: -200,
         duration: 1,
         scrollTrigger: {
           trigger: element,
