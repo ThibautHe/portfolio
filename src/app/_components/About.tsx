@@ -44,7 +44,7 @@ export default function About() {
         <p className="p-4">
           {`I am a frontend developer aspiring to become a fullstack developer. I
           live in Belgium close to brussels. My passion started with gaming.
-          Ever since I can remember I've always liked games, so I
+          Ever since I can remember I have always liked games, so I
           decided to learn how to code them. In the first year of my bachelor we got introduced to
           web development and since then I fell in love and stuck
           with it.`}
