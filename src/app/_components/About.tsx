@@ -50,7 +50,7 @@ export default function About() {
           with it.`}
           <br /> <br />{" "}
           {`I had the opportunity to fulfill a childhood dream and do
-          my internship in a gaming company. There I finally could see how games
+          my internship at a gaming company. There I finally could see how games
           were really made, And now I want to fulfill my new dream. The dream of working in
           the web industry.`}
         </p>
