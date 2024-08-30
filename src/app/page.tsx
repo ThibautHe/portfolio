@@ -181,7 +181,7 @@ export default function Home() {
       </div>
       <div ref={Aboutref} className="mb-32">
         <Section>
-          <Title title="about"></Title>
+          <Title title="About"></Title>
           <About></About>
         </Section>
       </div>
