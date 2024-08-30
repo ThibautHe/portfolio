@@ -83,19 +83,55 @@ export default function Home() {
     visible: { opacity: 1, x: 0 },
   };
 
+  const home = useRef<HTMLDivElement | null>(null);
+  const Portfolio = useRef<HTMLDivElement | null>(null);
+  const Aboutref = useRef<HTMLDivElement | null>(null);
+  const Contact = useRef<HTMLDivElement | null>(null);
+
   return (
     <>
-      <motion.div style={{}} className=" overflow-hidden h-[150vh]">
+      <motion.div ref={home} className=" overflow-hidden h-[150vh]">
         <div className="flex justify-between p-6 items-center relative">
           <nav className="hidden sm:flex">
             <ul className="flex gap-4">
-              <li>Home</li>
-              <li>Portfolio</li>
-              <li>About</li>
-              <li>Contact</li>
+              <li>
+                <button
+                  onClick={() => {
+                    home.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    Portfolio.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Portfolio
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    Aboutref.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  About
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    Contact.current?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  Contact
+                </button>
+              </li>
             </ul>
           </nav>
-          <Hamburgermenu></Hamburgermenu>
         </div>
         {PresentationText(displaceX, opacity, displaceY, childVariants)}
         <motion.div
@@ -137,11 +173,13 @@ export default function Home() {
         </motion.div>
       </motion.div>
 
-      <Section>
-        <Title title="Work"></Title>
-        <Work></Work>
-      </Section>
-      <div className="mb-32">
+      <div ref={Portfolio}>
+        <Section>
+          <Title title="Work"></Title>
+          <Work></Work>
+        </Section>
+      </div>
+      <div ref={Aboutref} className="mb-32">
         <Section>
           <Title title="about"></Title>
           <About></About>
@@ -150,55 +188,59 @@ export default function Home() {
       <Section>
         <ToolsSection></ToolsSection>
       </Section>
-      <Section>
-        <Title title="Contact"></Title>
-        <div className="relative flex justify-center">
-          <div className="bg-[#1F1F1F] border-[1px] z-0 w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
-          <div className="w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] border-[1px] relative z-50 bg-black">
-            <form className="h-full" action="">
-              <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
-                <div className=" flex gap-8 justify-between relative">
-                  <div className="flex flex-col gap-4 w-[45%]">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      className="bg-black border-gray-500 border-[1px]"
-                      type="text"
-                      name="name"
-                    ></input>
+      <div ref={Contact}>
+        <Section>
+          <Title title="Contact"></Title>
+          <div className="relative flex justify-center">
+            <div className="bg-[#1F1F1F] border-[1px] z-0 w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
+            <div className="w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] border-[1px] relative z-50 bg-black">
+              <form className="h-full" action="">
+                <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
+                  <div className=" flex gap-8 justify-between relative">
+                    <div className="flex flex-col gap-4 w-[45%]">
+                      <label htmlFor="name">Name</label>
+                      <input
+                        className="bg-black border-gray-500 border-[1px]"
+                        type="text"
+                        name="name"
+                      ></input>
+                    </div>
+                    <div className="flex flex-col gap-4 w-[45%]">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        className="bg-black border-gray-500 border-[1px]"
+                        type="text"
+                        name="email"
+                      ></input>
+                    </div>
                   </div>
-                  <div className="flex flex-col gap-4 w-[45%]">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      className="bg-black border-gray-500 border-[1px]"
-                      type="text"
-                      name="email"
-                    ></input>
+                  <div>
+                    <div className="flex flex-col gap-4">
+                      <label htmlFor="text">Message</label>
+                      <textarea
+                        className="bg-black border-gray-500 border-[1px] h-[200px]"
+                        name="text"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="relative mx-auto w-1/3">
+                    <button className="bg-white text-black w-full z-50 relative h-[50px]">
+                      Submit
+                    </button>
+                    <div className="bg-black border-[1px] z-0 text-black w-full h-[50px] absolute top-4 left-4" />
                   </div>
                 </div>
-                <div>
-                  <div className="flex flex-col gap-4">
-                    <label htmlFor="text">Message</label>
-                    <textarea
-                      className="bg-black border-gray-500 border-[1px] h-[200px]"
-                      name="text"
-                    ></textarea>
-                  </div>
-                </div>
-                <div className="relative mx-auto w-1/3">
-                  <button className="bg-white text-black w-full z-50 relative h-[50px]">
-                    Submit
-                  </button>
-                  <div className="bg-black border-[1px] z-0 text-black w-full h-[50px] absolute top-4 left-4" />
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-        <motion.div className="flex flex-col gap-6 md:gap-24 w-[60%] absolute left-[50%] -translate-x-[50%] -translate-y-[50%] md:w-[50%] top-1/3 md:top-1/2 ">
-          {Lines2()}
-        </motion.div>
-      </Section>
-      <motion.div className="flex flex-col gap-4 my-24 md:mt-48">{Lines3()}</motion.div>
+          <motion.div className="flex flex-col gap-6 md:gap-24 w-[60%] absolute left-[50%] -translate-x-[50%] -translate-y-[50%] md:w-[50%] top-1/3 md:top-1/2 ">
+            {Lines2()}
+          </motion.div>
+        </Section>
+      </div>
+      <motion.div className="flex flex-col gap-4 my-24 md:mt-48">
+        {Lines3()}
+      </motion.div>
       <div className="relative md:p-12">
         <div className="flex flex-col gap-12">
           <div className="text-center text-7xl">
@@ -219,6 +261,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="text-center">
+            <a href="mailto:thibaut.hellinckx@hotmail.com">email: thibaut.hellinckx@hotmail.com</a>
             <p>All rights reserved © Thibaut Hellinckx</p>
           </div>
         </div>
@@ -337,7 +380,6 @@ const Lines3 = () => {
   const lineRefs = useRef<HTMLElement[]>([]);
 
   console.log(lineRefs.current);
-  
 
   useGSAP(() => {
     lineRefs.current.forEach((line, index) => {
@@ -624,7 +666,7 @@ function PresentationText(
         ref={addLineRef}
         className="w-[50%] md:w-[50%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
       >
-        <h1 className="text-2xl xl:text-5xl">{`Hi I'm,`}</h1>
+        <h1 className="text-2xl xl:text-5xl">{`Hi, I'm`}</h1>
       </motion.div>
       <motion.div
         variants={childVariants}

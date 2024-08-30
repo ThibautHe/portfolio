@@ -42,16 +42,16 @@ export default function About() {
           />
         </motion.div>
         <p className="p-4">
-          {`I am a frontend developer aspiring to become a fullstack developer, I
-          live in Belgium close to brussels, my passion started with gaming,
-          Since ever i can remember I've always liked games, so i
-          decided to learn how to code them, this is when in the first year we
-          got taught about web development and since i fell in love and stuck
+          {`I am a frontend developer aspiring to become a fullstack developer. I
+          live in Belgium close to brussels. My passion started with gaming.
+          Ever since i can remember I've always liked games, so i
+          decided to learn how to code them. In the first year of my bachelor we got introduced to
+          web development and since then I fell in love and stuck
           with it.`}
           <br /> <br />{" "}
-          {`I had to opportunity to fulfill a childhood dream and do
-          my internship in a gaming company, There I finally could see how games
-          were really made, And now i want to fulfill my new dream and work in
+          {`I had the opportunity to fulfill a childhood dream and do
+          my internship in a gaming company. There I finally could see how games
+          were really made, And now i want to fulfill my new dream. The dream of working in
           the web industry.`}
         </p>
         <motion.div
