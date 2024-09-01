@@ -51,7 +51,7 @@ export default function About() {
           <br /> <br />{" "}
           {`I had the opportunity to fulfill a childhood dream and do
           my internship at a gaming company. There I finally could see how games
-          were really made, And now I want to fulfill my new dream. The dream of working in
+          were really made. Now I want to fulfill my new dream. The dream of working in
           the web industry.`}
         </p>
         <motion.div
