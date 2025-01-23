@@ -22,6 +22,7 @@ import About from "./_components/About";
 import linkedinSvg from "/public/logo/iconmonstr-linkedin-3.svg";
 
 import ToolsSection from "./_components/ToolsSection";
+import ContactForm from "./_components/ContactForm";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -194,43 +195,7 @@ export default function Home() {
           <div className="relative flex justify-center">
             <div className="bg-[#1F1F1F] border-[1px] z-0 w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] absolute left-[51.5%] -translate-x-[50%] -top-5" />
             <div className="w-[90%] h-[60vh] md:w-[40%] md:h-[70vh] border-[1px] relative z-50 bg-black">
-              <form className="h-full" action="">
-                <div className=" p-10 flex flex-col gap-8 h-full justify-evenly">
-                  <div className=" flex gap-8 justify-between relative">
-                    <div className="flex flex-col gap-4 w-[45%]">
-                      <label htmlFor="name">Name</label>
-                      <input
-                        className="bg-black border-gray-500 border-[1px]"
-                        type="text"
-                        name="name"
-                      ></input>
-                    </div>
-                    <div className="flex flex-col gap-4 w-[45%]">
-                      <label htmlFor="email">Email</label>
-                      <input
-                        className="bg-black border-gray-500 border-[1px]"
-                        type="text"
-                        name="email"
-                      ></input>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex flex-col gap-4">
-                      <label htmlFor="text">Message</label>
-                      <textarea
-                        className="bg-black border-gray-500 border-[1px] h-[200px]"
-                        name="text"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="relative mx-auto w-1/3">
-                    <button className="bg-white text-black w-full z-50 relative h-[50px]">
-                      Submit
-                    </button>
-                    <div className="bg-black border-[1px] z-0 text-black w-full h-[50px] absolute top-4 left-4" />
-                  </div>
-                </div>
-              </form>
+              <ContactForm></ContactForm>
             </div>
           </div>
           <motion.div className="flex flex-col gap-6 md:gap-24 w-[60%] absolute left-[50%] -translate-x-[50%] -translate-y-[50%] md:w-[50%] top-1/3 md:top-1/2 ">
