@@ -23,6 +23,7 @@ import linkedinSvg from "/public/logo/iconmonstr-linkedin-3.svg";
 
 import ToolsSection from "./_components/ToolsSection";
 import ContactForm from "./_components/ContactForm";
+import ProjectCard from "./_components/ProjectCard";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -57,7 +58,6 @@ export default function Home() {
 
   const w = ref.current?.offsetWidth;
   const h = ref.current?.offsetHeight;
-  console.log(w!);
 
   for (let index = 0; index < 36; index++) {
     dots.push(
@@ -214,7 +214,10 @@ export default function Home() {
           <div>
             <ul className="flex justify-center">
               <li className="block w-fit">
-                <a href="" className="w-fit block">
+                <a
+                  href="https://www.linkedin.com/in/thibauthellinckx/"
+                  className="w-fit block"
+                >
                   <Image
                     src={linkedinSvg}
                     width={50}
@@ -226,7 +229,9 @@ export default function Home() {
             </ul>
           </div>
           <div className="text-center">
-            <a href="mailto:thibaut.hellinckx@hotmail.com">email: thibaut.hellinckx@hotmail.com</a>
+            <a href="mailto:thibaut.hellinckx@hotmail.com">
+              email: thibaut.hellinckx@hotmail.com
+            </a>
             <p>All rights reserved © Thibaut Hellinckx</p>
           </div>
         </div>
@@ -237,14 +242,17 @@ export default function Home() {
 
 const WorksList = [
   {
+    title: "test",
     image: "/Image1.png",
     url: "https://www.aerodeco.be",
   },
   {
+    title: "test",
     image: "/Image3.png",
     url: "https://berkay-portfolio.netlify.app/Home",
   },
   {
+    title: "test",
     image: "/gilleshoriac.png",
     url: "https://www.gilleshoriac.com",
   },
@@ -254,14 +262,7 @@ const Work = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-fit m-auto">
       {WorksList.map((work) => (
-        <Link key={work.image} target="_blank" href={work.url}>
-          <Image
-            src={work.image}
-            width={1000}
-            height={500}
-            alt="aerodeco"
-          ></Image>
-        </Link>
+        <ProjectCard key={work.url} work={work}></ProjectCard>
       ))}
     </div>
   );
@@ -343,8 +344,6 @@ const MainImages = (h: number, w: number, scroll: MotionValue<number>) => {
 const Lines3 = () => {
   const matches = useMediaQuery("(min-width:768px)");
   const lineRefs = useRef<HTMLElement[]>([]);
-
-  console.log(lineRefs.current);
 
   useGSAP(() => {
     lineRefs.current.forEach((line, index) => {
@@ -523,7 +522,7 @@ const Lines = () => {
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0 }}
-        className="bg-white block w-full h-px -rotate-[30deg]"
+        className="bg-white block w-full h-1 -rotate-[30deg]"
       ></motion.span>
       <motion.span
         ref={addLineRef}
@@ -531,7 +530,7 @@ const Lines = () => {
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.2 }}
-        className="bg-white block w-full h-px -rotate-[30deg]"
+        className="bg-white block w-full h-1 -rotate-[30deg]"
       ></motion.span>
       <motion.span
         ref={addLineRef}
@@ -539,7 +538,7 @@ const Lines = () => {
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.4 }}
-        className="bg-white block w-full h-px -rotate-[30deg]"
+        className="bg-keyRed block w-full h-1 -rotate-[30deg]"
       ></motion.span>
       <motion.span
         ref={addLineRef}
@@ -547,7 +546,7 @@ const Lines = () => {
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.6 }}
-        className="bg-white block w-full h-px -rotate-[30deg]"
+        className="bg-white block w-full h-1 -rotate-[30deg]"
       ></motion.span>
       <motion.span
         ref={addLineRef}
@@ -555,15 +554,7 @@ const Lines = () => {
         initial={{ width: "0", transform: "Rotate(0)" }}
         animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
         transition={{ delay: 0.8 }}
-        className="bg-white block w-full h-px -rotate-[30deg]"
-      ></motion.span>
-      <motion.span
-        ref={addLineRef}
-        key={"6"}
-        initial={{ width: "0", transform: "Rotate(0)" }}
-        animate={{ width: w + "rem", transform: "Rotate(-30deg)" }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="bg-white block w-96 h-px -rotate-[30deg]"
+        className="bg-white block w-full h-1 -rotate-[30deg]"
       ></motion.span>
     </>
   );
@@ -624,26 +615,26 @@ function PresentationText(
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.1, duration: 2 }}
-      className="fixed w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:top-[30%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
+      className="fixed h-1/2 w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:top-[50%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
     >
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[50%] md:w-[50%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+        className="w-[50%] md:w-[50%] bg-black  h-16 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">{`Hi, I'm`}</h1>
       </motion.div>
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[90%] md:w-[100%] lg:w-[75%] ml-6 border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+        className="w-[90%] md:w-[100%] lg:w-[75%] ml-6 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">Thibaut Hellinckx</h1>
       </motion.div>
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[90%] md:w-[100%] lg:w-[75%] border-2 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+        className="w-[90%] md:w-[100%] lg:w-[75%] bg-black border-white h-16 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">A web developer</h1>
       </motion.div>

@@ -13,12 +13,16 @@ const config: Config = {
         '16': 'repeat(24, minmax(0, 0))',
 
       },
+      backgroundColor: {"keyRed" : "rgb(255,105,98)"},
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
           "mainimg":"url('/bgpic.png')",
       },
+      fontFamily: {
+        custom: ["magno-sans-variable", 'sans-serif']
+      }
     },
   },
   plugins: [],

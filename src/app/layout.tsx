@@ -15,7 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <html lang="en">
+      <head>
+        {/* Add Adobe Font (Typekit) link */}
+        <link rel="stylesheet" href="https://use.typekit.net/inw6dck.css" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

@@ -42,7 +42,6 @@ export default function ToolsSection() {
     }
   }, [element]); // Depend on `element` to run effect when `element` changes
 
-  console.log(element);
 
   return (
     <div className="h-[75vh] md:h-[50vh] content-center relative">
