@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 
 type Work = {
   title: string;
-  image: StaticImport;
-  url: UrlObject;
+  image: string;
+  url: string;
 };
 
 export default function ProjectCard({ work }: { work: Work }) {
