@@ -242,19 +242,22 @@ export default function Home() {
 
 const WorksList = [
   {
-    title: "test",
+    title: "AeroDeco Website",
     image: "/Image1.png",
     url: "https://www.aerodeco.be",
+    date:"April 2024"
   },
   {
-    title: "test",
+    title: "Portfolio",
     image: "/Image3.png",
     url: "https://berkay-portfolio.netlify.app/Home",
+    date:"June 2024"
   },
   {
-    title: "test",
+    title: "Author Website",
     image: "/gilleshoriac.png",
     url: "https://www.gilleshoriac.com",
+    date:"August 2024"
   },
 ];
 

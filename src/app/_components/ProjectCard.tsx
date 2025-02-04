@@ -9,6 +9,7 @@ type Work = {
   title: string;
   image: string;
   url: string;
+  date: string;
 };
 
 export default function ProjectCard({ work }: { work: Work }) {
@@ -60,13 +61,13 @@ export default function ProjectCard({ work }: { work: Work }) {
 
   return (
     <div
-      className="h-[700px] border p-6 flex flex-col"
+      className="h-[400px] border p-6 flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link target="_blank" href={work.url}>
         <Image
-          className="w-full"
+          className="w-full max-w-[400px]"
           src={work.image}
           width={1000}
           height={500}
@@ -76,10 +77,10 @@ export default function ProjectCard({ work }: { work: Work }) {
       <div className="flex flex-col h-full">
         <div className="flex justify-between mt-4 h-1/2">
           <h1>{work.title}</h1>
-          <p>date</p>
+          <p>{work.date}</p>
         </div>
         <div className="flex justify-between items-end h-1/2">
-          <p>Website type</p>
+          <p>Vitrine Website</p>
           <Link
             className="px-6 py-2 rounded-xl relative "
             target="_blank"
