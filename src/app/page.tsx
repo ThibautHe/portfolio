@@ -138,7 +138,7 @@ export default function Home() {
         <motion.div
           ref={ref}
           style={{ translateX: "-50%", translateY: imgDisplaceY }}
-          className="fixed z-40 left-[47%] top-[42%] lg:top-[45%] -translate-x-1/2 -translate-y-1/2 w-[90%] md:left-[65%] md:top-[55%] md:-translate-x-1/2 md:-translate-y-1/2 md:w-[50%] 2xl:w-[40%] overflow-hidden" // PC
+          className="fixed z-40 left-[47%] top-[42%] lg:top-[45%] -translate-x-1/2 -translate-y-1/2 w-[90%] md:left-[65%] md:top-[45%] md:-translate-x-1/2 md:-translate-y-1/2 md:w-[50%] 2xl:w-[40%] overflow-hidden" // PC
         >
           {
             <Image
@@ -618,26 +618,26 @@ function PresentationText(
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.1, duration: 2 }}
-      className="fixed  w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:h-1/2 lg:top-[50%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
+      className="fixed  w-full bottom-[20%] sm:bottom-[20%] md:w-1/2 lg:h-1/2 lg:top-[50%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
     >
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[50%] md:w-[50%] bg-black  h-16 xl:h-24 flex justify-center items-center"
+        className=" md:w-[50%] bg-black  h-16 md:h-24 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">{`Hi, I'm`}</h1>
       </motion.div>
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[90%] md:w-[100%] lg:w-[75%] ml-6 bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+        className="w-[90%] md:w-[100%] ml-6 bg-[#ff6961] md:h-24 border-white h-16 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">Thibaut Hellinckx</h1>
       </motion.div>
       <motion.div
         variants={childVariants}
         ref={addLineRef}
-        className="w-[90%] md:w-[100%] lg:w-[75%] bg-black border-white h-16 xl:h-24 flex justify-center items-center"
+        className="w-[90%] md:w-[100%] bg-black md:h-24 border-white h-16 xl:h-24 flex justify-center items-center"
       >
         <h1 className="text-2xl xl:text-5xl">A web developer</h1>
       </motion.div>
