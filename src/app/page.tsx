@@ -618,7 +618,7 @@ function PresentationText(
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.1, duration: 2 }}
-      className="fixed h-1/2 w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:top-[50%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
+      className="fixed  w-full bottom-[30%] sm:bottom-[20%] md:w-1/2 lg:h-1/2 lg:top-[50%] md:left-[15%] z-50 flex gap-1 md:gap-4 flex-col p-4"
     >
       <motion.div
         variants={childVariants}
