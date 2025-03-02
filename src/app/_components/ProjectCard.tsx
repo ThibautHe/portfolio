@@ -10,6 +10,8 @@ type Work = {
   image: string;
   url: string;
   date: string;
+  internal?: boolean;
+  details: string;
 };
 
 export default function ProjectCard({ work }: { work: Work }) {
@@ -58,14 +60,14 @@ export default function ProjectCard({ work }: { work: Work }) {
       },
     }), // Fixed the missing closing parenthesis here
   };
-
+  console.log(work.internal);
   return (
     <div
       className="h-[400px] border p-6 flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link target="_blank" href={work.url}>
+      <Link target={work.internal ? "_self" : "_blank"} href={work.url}>
         <Image
           className="w-full max-w-[400px]"
           src={work.image}
@@ -80,10 +82,10 @@ export default function ProjectCard({ work }: { work: Work }) {
           <p>{work.date}</p>
         </div>
         <div className="flex justify-between items-end h-1/2">
-          <p>Vitrine Website</p>
+          <p>{work.details}</p>
           <Link
             className="px-6 py-2 rounded-xl relative "
-            target="_blank"
+            target={work.internal ? "_self" : "_blank"}
             href={work.url}
           >
             {/* Motion wrapper */}

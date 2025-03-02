@@ -90,8 +90,8 @@ export default function Home() {
   const Contact = useRef<HTMLDivElement | null>(null);
 
   return (
-    <>
-      <motion.div ref={home} className=" overflow-hidden h-[150vh]">
+    <div className="bg-custom-gradient">
+      <motion.div ref={home} className="overflow-hidden h-[150vh]">
         <div className="flex justify-between p-6 items-center relative">
           <nav className="hidden sm:flex">
             <ul className="flex gap-4">
@@ -236,7 +236,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -245,19 +245,30 @@ const WorksList = [
     title: "AeroDeco Website",
     image: "/Image1.png",
     url: "https://www.aerodeco.be",
-    date:"April 2024"
+    date: "April 2024",
+    details: "A website for a painting company",
   },
   {
     title: "Portfolio",
     image: "/Image3.png",
     url: "https://berkay-portfolio.netlify.app/Home",
-    date:"June 2024"
+    date: "June 2024",
+    details: "A portfolio website",
   },
   {
     title: "Author Website",
     image: "/gilleshoriac.png",
     url: "https://www.gilleshoriac.com",
-    date:"August 2024"
+    date: "August 2024",
+    details: "A website for a french author",
+  },
+  {
+    title: "Use case Elia",
+    image: "/elia.png",
+    url: "/elia",
+    date: "February 2025",
+    internal: true,
+    details: "A use case for a the company Elia",
   },
 ];
 

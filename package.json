@@ -11,10 +11,10 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.1",
-    "framer-motion": "^11.3.2",
+    "framer-motion": "^12.4.7",
     "gsap": "^3.12.5",
     "next": "14.2.4",
-    "react": "^18",
+    "react": "^19.0.0",
     "react-dom": "^18",
     "resend": "^3.5.0",
     "splitting": "^1.1.0",

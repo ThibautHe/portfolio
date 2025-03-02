@@ -21,7 +21,8 @@ const config: Config = {
           "mainimg":"url('/bgpic.png')",
       },
       fontFamily: {
-        custom: ["magno-sans-variable", 'sans-serif']
+        magno: ["magno-sans-variable", 'sans-serif'],
+        poppins: ["Poppins", 'sans-serif'],
       }
     },
   },
