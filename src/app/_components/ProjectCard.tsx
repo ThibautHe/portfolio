@@ -63,13 +63,13 @@ export default function ProjectCard({ work }: { work: Work }) {
   console.log(work.internal);
   return (
     <div
-      className="h-[400px] border p-6 flex flex-col"
+      className="h-[500px] border p-6 flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link target={work.internal ? "_self" : "_blank"} href={work.url}>
         <Image
-          className="w-full max-w-[400px]"
+          className="w-full max-w-[550px] m-auto"
           src={work.image}
           width={1000}
           height={500}
@@ -81,10 +81,10 @@ export default function ProjectCard({ work }: { work: Work }) {
           <h1>{work.title}</h1>
           <p>{work.date}</p>
         </div>
-        <div className="flex justify-between items-end h-1/2">
+        <div className="grid grid-cols-2 justify-between items-end h-1/2">
           <p>{work.details}</p>
           <Link
-            className="px-6 py-2 rounded-xl relative "
+            className="rounded-xl relative justify-self-end "
             target={work.internal ? "_self" : "_blank"}
             href={work.url}
           >
@@ -108,11 +108,11 @@ export default function ProjectCard({ work }: { work: Work }) {
                 initial="hidden"
                 animate={isHovered ? "visible" : "hidden"}
                 exit="exit"
-                className="absolute flex space-x-1"
+                className="flex justify-end align-bottom space-x-1"
               >
                 {"WATCH".split("").map((letter, index) => (
                   <motion.span
-                    className="font-custom text-3xl font-extrabold"
+                    className="font-magno text-3xl font-extrabold"
                     key={index}
                     variants={letterVariants}
                     custom={index} // Pass index here

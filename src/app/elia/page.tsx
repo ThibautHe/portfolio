@@ -53,7 +53,7 @@ export default function Page() {
         BACK
       </Link>
 
-      <div className="max-w-[1024px] mx-auto p-6 min-h-[100vh] mb-24 relative">
+      <div className="max-w-[1024px] mx-auto p-6 min-h-[100vh] mb-12 relative">
         <h1 className="text-stroke text-[20vw] leading-none text-black mb-12 font-poppins">
           Elia
         </h1>
@@ -79,33 +79,27 @@ export default function Page() {
             authentication.
           </p>
         </div>
-        <motion.div className="flex flex-col gap-2 absolute -left-8 w-fit bottom-[-10%] ">
-          {Lines()}
-        </motion.div>
       </div>
+      <motion.div className="flex flex-col gap-2 w-fit relative mb-12 ">
+        {Lines()}
+      </motion.div>
 
-      <div className="max-w-[1024px] m-auto p-6 grid grid-cols-2 gap-4">
+      <div className="max-w-[1024px] m-auto p-6 grid grid-cols-3 gap-4">
         <Image
-          src="/elia.png"
-          width={500}
+          src="/elia1.png"
+          width={300}
           height={500}
           alt="project pic"
         ></Image>
         <Image
-          src="/elia.png"
-          width={500}
+          src="/elia2.png"
+          width={300}
           height={500}
           alt="project pic"
         ></Image>
         <Image
-          src="/elia.png"
-          width={500}
-          height={500}
-          alt="project pic"
-        ></Image>
-        <Image
-          src="/elia.png"
-          width={500}
+          src="/elia3.png"
+          width={300}
           height={500}
           alt="project pic"
         ></Image>
@@ -167,18 +161,22 @@ export default function Page() {
         </motion.div>
       </div>
       <div className="max-w-[1024px] m-auto p-6 grid grid-cols-2 gap-4">
-        <Image
-          src="/elia.png"
-          width={500}
-          height={500}
-          alt="project pic"
-        ></Image>
-        <Image
-          src="/elia.png"
-          width={500}
-          height={500}
-          alt="project pic"
-        ></Image>
+        <Link href="https://www.aerodeco.be">
+          <Image
+            src="/Image1.png"
+            width={500}
+            height={500}
+            alt="project pic"
+          ></Image>
+        </Link>
+        <Link href="https://www.gilleshoriac.com">
+          <Image
+            src="/gilleshoriac.png"
+            width={500}
+            height={500}
+            alt="project pic"
+          ></Image>
+        </Link>
       </div>
     </div>
   );
@@ -203,7 +201,7 @@ const Lines = () => {
           scrollTrigger: {
             trigger: line,
             start: "0% 90%", // Adjust this as needed
-            end: "2000% 10%",
+            end: "1000% 10%",
             scrub: 1,
             markers: true,
           },
