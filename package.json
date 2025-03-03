@@ -14,8 +14,8 @@
     "framer-motion": "^12.4.7",
     "gsap": "^3.12.5",
     "next": "14.2.4",
-    "react": "^19.0.0",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "resend": "^3.5.0",
     "splitting": "^1.1.0",
     "usehooks-ts": "^3.1.0"
