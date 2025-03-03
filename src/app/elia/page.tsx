@@ -62,22 +62,23 @@ export default function Page() {
             <Image src="/elia.png" alt="bgpic" width={500} height={500} />
           </div>
           <p className="w-1/2 text-sm">
-            The project focused on developing a management app for Elia's
-            employees, a challenging, engaging, and most importantly FUN
-            experience.
-            <br /> <br />
-            I'm really grateful for this opportunity and the valuable insights
-            I’ve gained along the way. I had the chance to dive deep into
-            backend development, working on API routes, structuring database
-            models, and ensuring integration with the frontend.
-            <br /> <br />
-            One of the biggest challenges I faced was troubleshooting
-            cookie-related issues in the deployed environment. While everything
-            worked perfectly fine locally, the deployed version didn't behave as
-            expected. This was a tricky issue, but it was also a rewarding
-            experience that enhanced my understanding of web security and
-            authentication.
-          </p>
+  The project focused on developing a management app for Elia&apos;s
+  employees, a challenging, engaging, and most importantly FUN
+  experience.
+  <br /> <br />
+  I&apos;m really grateful for this opportunity and the valuable insights
+  I&apos;ve gained along the way. I had the chance to dive deep into
+  backend development, working on API routes, structuring database
+  models, and ensuring integration with the frontend.
+  <br /> <br />
+  One of the biggest challenges I faced was troubleshooting
+  cookie-related issues in the deployed environment. While everything
+  worked perfectly fine locally, the deployed version didn&apos;t behave as
+  expected. This was a tricky issue, but it was also a rewarding
+  experience that enhanced my understanding of web security and
+  authentication.
+</p>
+
         </div>
       </div>
       <motion.div className="flex flex-col gap-2 w-fit relative mb-12 ">
